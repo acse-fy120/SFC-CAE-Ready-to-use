@@ -15,7 +15,7 @@ import time
 
 def convert_vtu_to_csv(path):
     # path = '../data/FPC_Re3900_DG_old'
-    filename = path + 'Flowpast_2d_Re3900_0.vtu' # this file will do (all files have the same mesh)
+    filename = path + 'fpc_0.vtu' # this file will do (all files have the same mesh)
     vtu_data = vtktools.vtu(filename)
     coords = vtu_data.GetLocations()
     nNodes = coords.shape[0]
@@ -46,17 +46,17 @@ def convert_vtu_to_csv(path):
     t_read_in = 0
 
     # data for training, validation and test
-    nTotalExamples = 1000 # maximum is 1000 for this data set
+    nTotalExamples = 2000 # maximum is 1000 for this data set
 
     #cwd = os.getcwd()
-    if not os.path.isdir('csv_data'):
-        os.mkdir('csv_data')  
+    if not os.path.isdir('new_FPC_csv'):
+        os.mkdir('new_FPC_csv')  
     #os.chdir('csv_data') # will overwrite files in results
 
     for data_i in range(nTotalExamples):
         t0 = time.time()    
         # path = '/home/cheaney/Results/nirom_test_fpc_nPOD_20_nSnap_100/snapshots/'
-        filename = path + 'Flowpast_2d_Re3900_' + str(data_i) + '.vtu'
+        filename = path + 'fpc_' + str(data_i) + '.vtu'
         vtu_data = vtktools.vtu(filename)
         # D[:,0] and D[:,1] store order1 and order2, D[:,2] store velocity
 
